@@ -1,12 +1,54 @@
 /**
-  * TODO: Change the header to today's date 
-  
-  * --- EXTRAS ----
-  * TODO: Add in way to choose work hours
-  * TODO: Add in option for choosing 12 or 24 hours, default to user's local timezone settings
-  * TODO: Break day into 15min increments
-*/
-$("#currentDay").text("Today is " + dayjs().format("MMMM DD, YYYY"));
+ *
+ *
+ * --- EXTRAS ----
+ * TODO: refresh time at top of hour using setTimeout
+ * TODO: Add in way to choose work hours
+ * TODO: Add in option for choosing 12 or 24 hours, default to user's local timezone settings
+ * TODO: Break day into 15min increments
+ -----------------------------------------------------------------------
+ */
+
+var now = dayjs();
+
+// compare to time in time block to decide on class
+var currentTime = dayjs().format("HH:mm");
+// console.log(currentTime.toString());
+
+var timeBlock = dayjs().hour(11);
+
+function createTimeBlock() {
+  if (timeBlock.isBefore(now)) {
+    console.log("time block is before current time");
+    $("#hour-block").addClass("past");
+  } else if (timeBlock.isAfter(now)) {
+    console.log("time block is after current time");
+    $("#hour-block").addClass("future");
+  } else if (now.isSame(timeBlock)) {
+    console.log("time block is same as current time");
+    $("#hour-block").addClass("present");
+  }
+}
+
+createTimeBlock();
+
+// ! Dynamic time block creation - abandoning for later
+// ! Something to come back if I can get everything else working
+// function createTimeBlock(hour) {
+//   var timeLabel = $("<div></div>")
+//     .text(hour)
+//     .addClass("col-2 col-md-1 hour text-center py-3");
+//   var textArea = $("<textarea></textarea>").addClass(
+//     "col-8 col-md-10 description"
+//   );
+//   var saveButton = $("<button></button>").addClass(
+//     "btn saveBtn col-2 col-md-1"
+//   );
+
+//   $("body").append(timeLabel, textArea, saveButton);
+// }
+
+// createTimeBlock();
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements

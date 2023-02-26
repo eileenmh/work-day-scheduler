@@ -10,45 +10,48 @@
  */
 
 var now = dayjs();
+var firstHour = 9;
+var lastHour = 17;
 
 // compare to time in time block to decide on class
 var currentTime = dayjs().format("HH:mm");
 // console.log(currentTime.toString());
 
-var timeBlock = dayjs().hour(11);
+function createTimeBlock(id, referenceId) {
+  // create parent <div> element and attribute hour-id, then append to main
+  var parent = $("<div>").attr("id", id);
+  $("main").append(parent);
 
-function createTimeBlock() {
-  if (timeBlock.isBefore(now)) {
-    console.log("time block is before current time");
-    $("#hour-block").addClass("past");
-  } else if (timeBlock.isAfter(now)) {
-    console.log("time block is after current time");
-    $("#hour-block").addClass("future");
-  } else if (now.isSame(timeBlock)) {
-    console.log("time block is same as current time");
-    $("#hour-block").addClass("present");
+  // Append child elements to parent
+  var hourHTML = '<div class="col-2 col-md-1 text-center py-3 hour"></div>';
+  var textareaHTML =
+    '<textarea class="col-8 col-md-10 description" rows="3"> </textarea>';
+  var buttonHTML =
+    '<button class="btn saveBtn col-2 col-md-1" aria-label="save"><i class="fas fa-save" aria-hidden="true"></i></button>';
+  $(referenceId).append(hourHTML, textareaHTML, buttonHTML);
+}
+
+function generateTimeBlocks() {
+  for (let i = firstHour; i <= lastHour; i++) {
+    var id = "hour-" + i;
+    var referenceId = "#" + id;
+    createTimeBlock(id, referenceId);
+
+    var timeBlock = dayjs().hour(i);
+
+    $(referenceId).children(".hour").text(timeBlock.minute(0).format("H:mm A"));
+
+    if (timeBlock.isBefore(now)) {
+      $(referenceId).addClass("past");
+    } else if (timeBlock.isAfter(now)) {
+      $(referenceId).addClass("future");
+    } else if (now.isSame(timeBlock)) {
+      $(referenceId).addClass("present");
+    }
   }
 }
 
-createTimeBlock();
-
-// ! Dynamic time block creation - abandoning for later
-// ! Something to come back if I can get everything else working
-// function createTimeBlock(hour) {
-//   var timeLabel = $("<div></div>")
-//     .text(hour)
-//     .addClass("col-2 col-md-1 hour text-center py-3");
-//   var textArea = $("<textarea></textarea>").addClass(
-//     "col-8 col-md-10 description"
-//   );
-//   var saveButton = $("<button></button>").addClass(
-//     "btn saveBtn col-2 col-md-1"
-//   );
-
-//   $("body").append(timeLabel, textArea, saveButton);
-// }
-
-// createTimeBlock();
+generateTimeBlocks();
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements

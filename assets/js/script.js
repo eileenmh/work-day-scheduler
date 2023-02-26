@@ -6,8 +6,7 @@
   * TODO: Add in option for choosing 12 or 24 hours, default to user's local timezone settings
   * TODO: Break day into 15min increments
 */
-
-$("#currentDay").text("Hello World!");
+$("#currentDay").text("Today is " + dayjs().format("MMMM DD, YYYY"));
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements

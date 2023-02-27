@@ -18,11 +18,14 @@ TIME BLOCKS
 // Create time block HTML and append to <main>
 function createTimeBlock(time) {
   var timeBlock = $('<div class="time-block row">').attr("id", "hour-" + time);
-  $(timeBlock).append(
-    '<div class="col-2 col-md-1 text-center py-3 hour"></div>',
-    '<textarea class="col-8 col-md-10 description" rows="3"> </textarea>',
+  var hour = $('<div class="col-2 col-md-1 text-center py-3 hour">');
+  var textarea = $(
+    '<textarea class="col-8 col-md-10 description" rows="3"> </textarea>'
+  ).val(localStorage.getItem("hour-" + time));
+  var button = $(
     '<button class="btn saveBtn col-2 col-md-1" aria-label="save"><i class="fas fa-save" aria-hidden="true"></i></button>'
   );
+  $(timeBlock).append(hour, textarea, button);
   $("main").append(timeBlock);
 }
 
@@ -54,14 +57,18 @@ function generateTimeBlocks() {
 /* -------------------------------------------------------------------------------------------
 TEXT AREA
 */
+// store textarea value in local storage with parent id as key
 function storeText(event) {
   var parentId = $(event.currentTarget).parent().attr("id");
   var textareaValue = $(event.currentTarget).prev().val();
   localStorage.setItem(parentId, textareaValue);
 }
 
+// run storeText on button click
 $("main").on("click", ".saveBtn", storeText);
+
 // -------------------------------------------
+
 var now = dayjs();
 var firstHour = 17;
 var lastHour = 23;

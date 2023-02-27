@@ -72,7 +72,8 @@ TEXT AREA
 RUN FUNCTIONS
 */
   var now = dayjs();
-  var firstHour = 17;
-  var lastHour = 23;
+  var firstHour = 9;
+  var lastHour = 17;
+  $("#currentDay").text(now.format("MMMM D, YYYY"));
   generateTimeBlocks();
 });

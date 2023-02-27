@@ -50,6 +50,17 @@ function generateTimeBlocks() {
     addTimeData(i, timeBlockEl);
   }
 }
+
+/* -------------------------------------------------------------------------------------------
+TEXT AREA
+*/
+function storeText(event) {
+  var parentId = $(event.currentTarget).parent().attr("id");
+  var textareaValue = $(event.currentTarget).prev().val();
+  localStorage.setItem(parentId, textareaValue);
+}
+
+$("main").on("click", ".saveBtn", storeText);
 // -------------------------------------------
 var now = dayjs();
 var firstHour = 17;

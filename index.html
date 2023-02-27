@@ -27,10 +27,15 @@
   </head>
 
   <body>
-    <header class="p-5 mb-4">
-      <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead"></p>
+    <header>
+      <div class="p-3">
+        <h1 class="display-3 text-center">Work Day Scheduler</h1>
+        <p class="lead text-center">A simple calendar app for scheduling your work day</p>
+      </div>
+      <div>
+        <p id="currentDay" class="lead text-center"></p>
+        <div id="saveMessage" class="text-center hide">Event saved! 💾</div>
+      </div>
     </header>
     
     <main class="container-fluid px-5"></main> <!--Time blocks are created using JavaScript -->

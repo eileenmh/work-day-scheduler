@@ -23,6 +23,10 @@ WHEN I refresh the page
 THEN the saved events persist
 ```
 
+## Roadmap
+
+- Add a reset button that clears out all data in local storage
+
 ## Credits
 
 - [Starter code](https://github.com/coding-boot-camp/crispy-octo-meme) provided by [UNC Coding Bootcamp](https://bootcamp.unc.edu/coding/)

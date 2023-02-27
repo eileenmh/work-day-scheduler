@@ -52,6 +52,10 @@ TEXT AREA
     var parentId = $(event.currentTarget).parent().attr("id");
     var textareaValue = $(event.currentTarget).prev().val();
     localStorage.setItem(parentId, textareaValue);
+    $("#saveMessage").removeClass("hide");
+    setTimeout(function () {
+      $("#saveMessage").addClass("hide");
+    }, 2000);
   }
 
   // run storeText on button click
@@ -63,6 +67,6 @@ RUN FUNCTIONS
   var now = dayjs();
   var firstHour = 9;
   var lastHour = 17;
-  $("#currentDay").text(now.format("MMMM D, YYYY"));
+  $("#currentDay").text(now.format("dddd, MMMM D"));
   generateTimeBlocks();
 });

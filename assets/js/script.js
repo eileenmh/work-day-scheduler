@@ -1,14 +1,3 @@
-/**
- * TODO: Add code to display the current date in the header of the page.
- * 
- * --- EXTRAS ----
- * TODO: refresh time at top of hour using setTimeout
- * TODO: Add in way to choose work hours
- * TODO: Add in option for choosing 12 or 24 hours, default to user's local timezone settings
- * TODO: Break day into 15min increments
- -----------------------------------------------------------------------
- */
-
 $(function () {
   /* ---------------------------------------------------------------------
 TIME BLOCKS
